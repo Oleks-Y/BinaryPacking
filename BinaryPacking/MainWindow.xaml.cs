@@ -24,12 +24,13 @@ namespace BinaryPacking
     {
         // Add Delete of Detail
         // When no elements added have exception
-        private readonly Sheet _sheet;
+        private  Sheet _sheet;
 
         public MainWindow()
         {
             InitializeComponent();
            _sheet = new Sheet();
+            
         }
 
         private void CreateDetail_Click(object sender, RoutedEventArgs e)
@@ -77,7 +78,7 @@ namespace BinaryPacking
             
             uint sheetHeight = 0;
             uint sheetWidth = 0;
-            if (!(UInt32.TryParse(SheetHeight.Text, out sheetHeight) && UInt32.TryParse(SheetHeight.Text, out sheetWidth)))
+            if (!(UInt32.TryParse(SheetHeight.Text, out sheetHeight) && UInt32.TryParse(SheetWidth.Text, out sheetWidth)))
             {
                 MessageBox.Show("Ширина и висота должны быть целыми числами!");
                 return;
@@ -132,6 +133,13 @@ namespace BinaryPacking
             SheetView.Children.Clear();
         }
 
-        
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            _sheet = new Sheet();
+            SheetView.Children.Clear();
+            Field.Children.Clear();
+            SheetHeight.Text = "";
+            SheetWidth.Text = "";
+        }
     }
 }
