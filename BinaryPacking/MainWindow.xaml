@@ -1,0 +1,50 @@
+﻿<Window x:Class="BinaryPacking.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BinaryPacking"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.6*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*"/>
+            <ColumnDefinition Width="0.4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Button   Grid.Column="1" Grid.Row="0" Width="50" Content="Расчет" VerticalAlignment="Bottom" Margin="105,0,165,6" Click="Button_Click"/>
+
+        <!--=<Rectangle Name="SheetView" Grid.RowSpan="3"  Fill="Aquamarine" Width="{Binding ElementName=SheetWidth, IsAsync=True, Path=Text}"
+                   Height="{Binding ElementName=SheetHeight, IsAsync=True, Path=Text}"/>=-->
+        <Border Name="SheetBorder" Grid.RowSpan="3"   Width="{Binding ElementName=SheetWidth, IsAsync=True, Path=Text}"
+                   Height="{Binding ElementName=SheetHeight, IsAsync=True, Path=Text}" SizeChanged="SheetBorder_SizeChanged">
+            <Grid Name="SheetView" Background="Aquamarine" >
+                
+            </Grid>
+        </Border>
+        
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="88,0,0,57" >Параметры листа</Label>
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,47,0,10" Content="Ширина листа" />
+        <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,20,0,37" Content="Высота листа"  />
+        <TextBox Name="SheetHeight" Grid.Row="0" Grid.Column="1" Width="100" Height="20" Margin="160,23,60,44"/>
+        <TextBox Name="SheetWidth" Grid.Column="1" Width="100" Height="20" Margin="160,52,60,15"/>
+
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="88,0,0,57" >Новый елемент</Label>
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,47,0,10" Content="Высота елемента" />
+        <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,20,0,37" Content="Ширина елемента"/>
+        <TextBox Name="DetailWidth" Grid.Row="1" Grid.Column="1" Width="100" Height="20" Margin="160,23,60,44"/>
+        <TextBox Name="DetailHeight" Grid.Row="1" Grid.Column="1" Width="100" Height="20" Margin="160,52,60,15"/>
+
+        <Button  Name="CreateDetail"  Grid.Row="1" Grid.Column="1" Width="50" Height="20" Margin="105,83,165,0" Content="Создать" Click="CreateDetail_Click"/>
+        <Border Grid.Row="2" Grid.Column="1"  Padding="10" >
+            <ScrollViewer>
+                <StackPanel Name="Field" Grid.Row="2" Grid.Column="1"></StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>
