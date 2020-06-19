@@ -35,6 +35,8 @@ namespace BinaryPacking
 
         private void CreateDetail_Click(object sender, RoutedEventArgs e)
         {
+            /// Add new detail 
+
             uint detailHeight=100;
             uint detailWidth=100;
             if (!(UInt32.TryParse(DetailHeight.Text, out detailHeight) && UInt32.TryParse(DetailWidth.Text, out detailWidth)))
@@ -48,7 +50,7 @@ namespace BinaryPacking
                 return;
             }
             
-            // Random Color
+            // 
             var elem = new Rectangle()
             {
                 Width = detailWidth,
@@ -75,7 +77,8 @@ namespace BinaryPacking
         {
             SheetView.Children.Clear();
             
-            
+
+               
             uint sheetHeight = 0;
             uint sheetWidth = 0;
             if (!(UInt32.TryParse(SheetHeight.Text, out sheetHeight) && UInt32.TryParse(SheetWidth.Text, out sheetWidth)))

@@ -8,12 +8,13 @@ namespace BinaryPacking.Models
 {
     public static class BrukeAlgoritm
     {
-        
+        // Algorigm for packing rectangles
 
         public static List<Detail> Bruke(Sheet sheet)
         {
             sheet.DetailsUnpacked = sheet.DetailsUnpacked.OrderByDescending(x => x.Width).ThenByDescending(x => x.Height).ToList();
             List<int> Gap= new List<int>();
+            //Create a altitude map
             for(int i =0; i<sheet.Width; i++)
             {
                 Gap.Add(0);
@@ -26,6 +27,7 @@ namespace BinaryPacking.Models
                 {
                     if(Gap[j] < min)
                     {
+                        // Search of lowest place
                         min = Gap[j];
                         coorX = j;
                     }
@@ -33,6 +35,7 @@ namespace BinaryPacking.Models
                 
                 int i = coorX + 1;
                 int gapWidth = 1;
+                // Width of lowest place
                 while( i < Gap.Count && Gap[i] == Gap[i - 1])
                 {
                     gapWidth++;
@@ -40,7 +43,7 @@ namespace BinaryPacking.Models
                 }
                 int start = coorX;
                 int end = coorX + gapWidth ;
-
+                // Detail, that can be packed here
                 var detail = sheet.DetailsUnpacked.Where(x => x.Width <= gapWidth).FirstOrDefault();
                 
                 if (detail != null)
@@ -79,6 +82,7 @@ namespace BinaryPacking.Models
                     }
                 }
             }
+            //return array of packed details
             return sheet.DetailsPacked;
         }
     }

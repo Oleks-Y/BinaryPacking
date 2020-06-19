@@ -6,6 +6,7 @@ namespace BinaryPacking.Models
 {
     public class Sheet : IRestangle
     {
+       
         public uint Height { get ; set ; }
         public uint Width { get ; set ; }
 
