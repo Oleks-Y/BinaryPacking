@@ -36,12 +36,12 @@ namespace BinaryPacking
         private void CreateDetail_Click(object sender, RoutedEventArgs e)
         {
             /// Add new detail 
-
+            uint detailCount = 1;
             uint detailHeight=100;
             uint detailWidth=100;
-            if (!(UInt32.TryParse(DetailHeight.Text, out detailHeight) && UInt32.TryParse(DetailWidth.Text, out detailWidth)))
+            if (!(UInt32.TryParse(DetailHeight.Text, out detailHeight) && UInt32.TryParse(DetailWidth.Text, out detailWidth ) && UInt32.TryParse(DetailCount.Text, out detailCount)))
             {
-                MessageBox.Show("Ширина и висота должны быть целыми числами!");
+                MessageBox.Show("Ширина, висота и количество должны быть целыми числами!");
                 return;
             }
             if(detailHeight<10 || detailWidth < 10)
@@ -49,36 +49,41 @@ namespace BinaryPacking
                 MessageBox.Show("Ширина и висота должны быть > 10 !");
                 return;
             }
-            
-            // 
-            var elem = new Rectangle()
+            if (detailCount == 0)
             {
-                Width = detailWidth,
-                Height = detailHeight,
-                Fill = new SolidColorBrush(Colors.Aqua),
-                HorizontalAlignment = HorizontalAlignment.Left,
-                StrokeThickness = 4,
-                Stroke = new SolidColorBrush(Colors.DarkBlue)
-            };
-            Field.Children.Add(elem);
-            if (detailHeight > detailWidth)
-            {
-                var elem1 = elem.CloneTurned();
-                _sheet.DetailsUnpacked.Add(new Detail() { Height = detailWidth, Width = detailHeight, View = elem1 });
+                MessageBox.Show("Не будет создано деталей!");
+                return;
             }
-            else
+
+            // 
+            for (int i = 0; i < detailCount; i++)
             {
-                _sheet.DetailsUnpacked.Add(new Detail() { Height = detailHeight, Width = detailWidth, View = elem });
+                var elem = new Rectangle()
+                {
+                    Width = detailWidth,
+                    Height = detailHeight,
+                    Fill = new SolidColorBrush(Colors.Aqua),
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    StrokeThickness = 4,
+                    Stroke = new SolidColorBrush(Colors.DarkBlue)
+                };
+                //
+                Field.Children.Add(elem);
+                if (detailHeight > detailWidth)
+                {
+                    var elem1 = elem.CloneTurned();
+                    _sheet.DetailsUnpacked.Add(new Detail() { Height = detailWidth, Width = detailHeight, View = elem1 });
+                }
+                else
+                {
+                    _sheet.DetailsUnpacked.Add(new Detail() { Height = detailHeight, Width = detailWidth, View = elem });
+                }
             }
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SheetView.Children.Clear();
-            
-
-               
             uint sheetHeight = 0;
             uint sheetWidth = 0;
             if (!(UInt32.TryParse(SheetHeight.Text, out sheetHeight) && UInt32.TryParse(SheetWidth.Text, out sheetWidth)))
@@ -89,7 +94,12 @@ namespace BinaryPacking
             
             _sheet.Height = sheetHeight;
             _sheet.Width = sheetWidth;
+            //Clear all
+            _sheet.DetailsPacked.Clear();
+            SheetView.Children.Clear();             
             Field.Children.Clear();
+
+            
             //Check if total area > sheetArea
             if (_sheet.DetailsUnpacked.Sum(x => x.Area) > _sheet.Area)
             {

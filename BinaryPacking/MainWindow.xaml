@@ -25,10 +25,10 @@
         <Border Name="SheetBorder" Grid.RowSpan="3"   Width="{Binding ElementName=SheetWidth, IsAsync=True, Path=Text}"
                    Height="{Binding ElementName=SheetHeight, IsAsync=True, Path=Text}" SizeChanged="SheetBorder_SizeChanged">
             <Grid Name="SheetView" Background="Aquamarine" >
-                
+
             </Grid>
         </Border>
-        
+
         <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="88,0,0,57" >Параметры листа</Label>
         <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,47,0,10" Content="Ширина листа" />
         <Label Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,20,0,37" Content="Высота листа"  />
@@ -38,8 +38,10 @@
         <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="88,0,0,57" >Новый елемент</Label>
         <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,47,0,10" Content="Высота елемента" />
         <Label Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="30" Margin="0,20,0,37" Content="Ширина елемента"/>
-        <TextBox Name="DetailWidth" Grid.Row="1" Grid.Column="1" Width="100" Height="20" Margin="160,23,60,44"/>
-        <TextBox Name="DetailHeight" Grid.Row="1" Grid.Column="1" Width="100" Height="20" Margin="160,52,60,15"/>
+        <Label Grid.Row="1" Grid.Column="1"  Height="30" Width="50" Margin="234,37,40,54" Content="Кол-во"/>
+        <TextBox Name="DetailWidth" Grid.Row="1" Grid.Column="1" Width="100" Height="20" Margin="134,42,94,59"/>
+        <TextBox Name="DetailHeight" Grid.Row="1" Grid.Column="1" Width="100" Height="20" Margin="134,69,94,32"/>
+        <TextBox Name="DetailCount" Grid.Row="1" Grid.Column="1" Width="40" Height="20" Margin="254,41,-26,60"/>
 
         <Button  Name="CreateDetail"  Grid.Row="1" Grid.Column="1" Width="50" Height="20" Margin="105,83,165,0" Content="Создать" Click="CreateDetail_Click"/>
         <Border Grid.Row="2" Grid.Column="1"  Padding="10" >
